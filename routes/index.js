@@ -1,0 +1,19 @@
+var postsRouter = require('./posts');
+var commentsRouter = require('./comments');
+
+module.exports= {
+
+    setupRoutes(app) {
+	/* Posts */
+	app.get('/posts', postsRouter.getPosts);
+	app.post('/posts', postsRouter.addPost);
+	app.put('/posts/:postId', postsRouter.updatePost);
+	app.delete('/posts/:postId', postsRouter.removePost);
+	
+	/* Comments */
+	app.get('/posts/:postId/comments', commentsRouter.getComments);
+	app.post('/posts/:postId/comments', commentsRouter.addComment);
+	app.put('/posts/:postId/comments/:commentId', commentsRouter.updateComment);
+	app.delete('/posts/:postId/comments/:commentId', commentsRouter.removeComment);
+    }
+}
